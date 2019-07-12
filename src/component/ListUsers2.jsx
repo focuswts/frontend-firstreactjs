@@ -29,7 +29,6 @@ class ListUsers2 extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (this.state.users == prevState.users) {
-      console.log("teste");
       this.refreshUsers();
     }
   }
@@ -51,7 +50,6 @@ class ListUsers2 extends Component {
   //Get All Users Method
   refreshUsers() {
     UsersDataService.retrieveAllUsers().then(response => {
-      console.log(response);
       this.setState({ users: response.data });
     });
   }
@@ -74,7 +72,6 @@ class ListUsers2 extends Component {
 
   //Update User Method
   updateUserClicked(id) {
-    console.log("Update User: " + id);
     this.props.history.push(`/users/update/${id}`);
   }
 

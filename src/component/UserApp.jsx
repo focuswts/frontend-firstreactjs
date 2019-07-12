@@ -6,6 +6,7 @@ import AddUser from "./AddUser";
 import { createBrowserHistory } from "history";
 import PropTypes from "prop-types";
 import ListUsers2 from "./ListUsers2";
+import AddUserDropdown from "./AddUserDropdown";
 
 class UserApp extends Component {
   static contextTypes = {
@@ -33,6 +34,7 @@ class UserApp extends Component {
             <Route path="/" exact component={ListUsers} />
             <Route path="/users" exact component={ListUsers2} />
             <Route path="/users/add" exact component={AddUser} />
+            <Route path="/users/add2" exact component={AddUserDropdown} />
             <Route path="/users/update/:id" exact component={UpdateUser} />
           </Switch>
         
