@@ -19,8 +19,33 @@ class ListUsers2 extends Component {
     this.reloadTable = this.reloadTable.bind(this);
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.refreshUsers();
+  }
+
+  componentDidMount() {
+    this.forceUpdate();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.users == prevState.users) {
+      console.log("teste");
+      this.refreshUsers();
+    }
+  }
+
+
+
+  shouldComponentUpdate(nextProps, nextState) {
+    if (this.state.users.length == 0) {
+      return true;
+    }
+
+    if (this.state.users == nextState.users) {
+      return false;
+    }
+
+    return true;
   }
 
   //Get All Users Method
@@ -40,7 +65,11 @@ class ListUsers2 extends Component {
   deleteUserClicked(id) {
     UsersDataService.deleteUser(id).then(response => {
       this.setState({ message: `Delete of User ${id} sucessfull` });
-    });
+    },
+      this.refreshUsers()
+    );
+
+    this.forceUpdate();
   }
 
   //Update User Method
